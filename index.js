@@ -9,10 +9,15 @@ import Subscribe from "./routes/subsribe.js"
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://rebornclassics.vercel.app/"
+  "https://rebornclassics.vercel.app"
 ];
 
 app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
+app.options("*", cors({
   origin: allowedOrigins,
   credentials: true
 }));
