@@ -9,6 +9,11 @@ router.post("/subscribe", async (req, res) => {
     return res.status(400).json({ message: "Number is required" });
   }
 
+  const existing = await User.findOne({phone})
+  if (existing) {
+    return res.status(400).json({message: "Number already exists"})
+  }
+
   try {
     const exists = await User.findOne({ phone });
     if (exists) {
